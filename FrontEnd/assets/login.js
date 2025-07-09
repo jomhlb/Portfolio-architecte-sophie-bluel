@@ -32,4 +32,11 @@
       error.textContent = "Une erreur est survenue. Réessayez plus tard.";
     }
   });
+
+const token = localStorage.getItem("token");
+const adminBanner = document.getElementById("admin-banner");
+
+if (token) {
+  adminBanner.classList.remove("hidden");
+}
     
