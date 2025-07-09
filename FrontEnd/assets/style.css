@@ -30,7 +30,12 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	background-color: #FFFEF8;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 }
+
 ol, ul {
 	list-style: none;
 }
@@ -58,6 +63,10 @@ header {
 	justify-content: space-between;
 	margin: 50px 0
 }
+
+main{
+	flex: 1;
+}
 section {
 	margin: 50px 0
 }
@@ -75,7 +84,6 @@ h1 > span {
 	font-family: 'Work Sans';
 	font-size:10px;
 	letter-spacing: 0.1em;
-;
 }
 
 h2{
@@ -217,5 +225,61 @@ footer nav ul {
 .login-link{
 	text-decoration: none;
 	color: black;
+}
+
+/*PAGE LOGIN*/
+.login-container{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.login-container h2{
+	margin-bottom: 20px;
+}
+
+.login-form label {
+	margin-bottom: 5px;
+	margin-top: 20px;
+}
+
+.login-form input {
+	height: 50px;
+    box-shadow: 0 0 14px rgba(0, 0, 0, 0.1);
+	border: none;
+}
+
+.login-form button {
+	width: 40%;
+	margin: 30px 110px;
+	height: 30px;
+	border-radius: 60px;
+	border: none;
+	color: white;
+    background-color: #1D6154;
+	font-family:"Syne", sans-serif;
+}
+
+.login-form a {
+	margin: 0px 110px;
+	width: 100%;
+	color: black;
+}
+
+.login-form{
+	display: flex;
+	flex-direction: column;
+	width: 30%;
+	font-family: "Work Sans", sans-serif;
+	font-size: 14px;
+}
+
+/*FOOTER*/
+footer{
+	background-color: white;
+	height: 50px;
+	padding-bottom: 15px;
+	padding-top: 2px;
 }
 
