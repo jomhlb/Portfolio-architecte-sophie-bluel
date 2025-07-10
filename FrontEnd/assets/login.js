@@ -1,9 +1,9 @@
-/** Formulaire */
+/** FORMULAIRE */
   const form = document.getElementById("login-form");
   const error = document.getElementById("error-message");
 
   form.addEventListener("submit", async (e) => {
-    e.preventDefault(); // Empêche le rechargement
+    e.preventDefault();
 
     const email = document.getElementById("email").value;
     const password = document.getElementById("mdp").value;
@@ -20,11 +20,11 @@
       const data = await response.json();
 
       if (response.ok) {
-        // ✅ Connexion réussie
-        localStorage.setItem("token", data.token); // on stocke le token
-        window.location.href = "index.html"; // redirection vers la page d'accueil
+        // Connexion réussie
+        localStorage.setItem("token", data.token);
+        window.location.href = "index.html";
       } else {
-        // ❌ Connexion échouée
+        // Connexion échouée
         error.textContent = "E-mail ou mot de passe incorrect.";
       }
     } catch (error) {
@@ -39,4 +39,5 @@ const adminBanner = document.getElementById("admin-banner");
 if (token) {
   adminBanner.classList.remove("hidden");
 }
-    
+
+

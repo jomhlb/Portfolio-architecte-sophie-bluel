@@ -16,22 +16,32 @@
 
 </head>
 <body>
-<header>
-<div id="admin-banner" class="hidden">
+	<!-- BANNIERE DU HAUT -->
+	<div id="admin-banner" class="hidden">
   <a href=""><i class="fa-regular fa-pen-to-square"></i> Mode édition</a>
 </div>
+
+	<!-- CONTENEUR PRINCIPAL -->
+<div class="container">
+	
+	<!-- HEADER -->
+<header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
 		<ul>
 			<li>projets</li>
 			<li>contact</li>
+			<!-- LOGIN - LOGOUT -->
 			<li><a href="login.html" class="login-link">login</a></li>
 			<li><img src="FrontEnd/assets/icons/instagram.png" alt="Instagram">
 			</li>
 		</ul>
 	</nav>
 </header>
+
+	<!-- MAIN -->
 <main>
+	<!-- SECTION INTRODUCTION -->
 	<section id="introduction">
 		<figure>
 			<img src="FrontEnd/assets/images/sophie-bluel.png" alt="">
@@ -43,16 +53,29 @@
 			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)</p>
 		</article>
 	</section>
+
+	<!-- SECTION PORTFOLIO -->
 	<section id="portfolio">
+
+		<!-- PORTFOLIO HEADER -->
+		<div class="portfolio-header">
 		<h2>Mes Projets</h2>
 
+		<!-- BOUTON MODIFIER -->
+		<button id="open-modal-btn" class="btn-modifier" aria-label="Modifier la galerie">
+		<i class="fa-regular fa-pen-to-square"></i> modifier</button>
+		</div>
+
+		<!-- SECTION FILTRE -->
 		<div class="filtres-galery">
 		</div>
 
+		<!-- SECTION GALLERY -->
 		<div class="gallery">
 		</div>
-
 	</section>
+
+	<!-- SECTION CONTACT -->
 	<section id="contact">
 		<h2>Contact</h2>
 		<p>Vous avez un projet ? Discutons-en !</p>
@@ -68,6 +91,7 @@
 	</section>
 </main>
 
+<!-- FOOTER -->
 <footer>
 	<nav>
 		<ul>
@@ -76,6 +100,57 @@
 	</nav>
 </footer>
 
+<!-- SCRIPT JS LINK -->
 <script src="FrontEnd/assets/script.js"></script>
+</div>
+
+<!-- MODALE -->
+<div id="modal" class="modal hidden" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-content" role="document">
+    <button class="modal-close" aria-label="Fermer la fenêtre modale">&times;</button>
+    
+    <!-- GALERIE PHOTO -->
+    <div id="modal-view-gallery">
+      <h3>Galerie Photo</h3>
+	  <div class="modal-gallery"></div>
+	  <hr class="modal-separator">
+      <button id="to-add-photo-view">Ajouter une photo</button>
+    </div>
+
+    <!-- AJOUT PHOTO -->
+    <div id="modal-view-add-photo" class="hidden">
+	<button type="button" id="back-to-gallery"><i class="fa-solid fa-arrow-left"></i></button>
+    
+	<h3>Ajout photo</h3>
+	<form id="add-photo-form">
+	<div class="photo-upload">
+
+		<div class="upload-zone">
+			<i class="fa-regular fa-image" style="color : #B9C5CC" id="upload-logo"></i>
+		</div>
+
+        <label for="photo-file" id="photo-file">+ Ajouter une photo</label>
+        <input type="file" id="file-photo" name="file-photo" accept="image/*" required>
+
+		<p class="upload-info">jpg, png : 4mo max</p>
+	</div>
+
+	<div class="info-upload">        
+		<label for="photo-title">Titre</label>
+        <input type="text" id="photo-title" name="photo-title" required>
+
+		<label for="photo-category">Catégorie</label>
+		<select id="photo-category" name="photo-category" required>
+		<option value=""></option>
+		</select>
+
+		<hr class="modal-separator">
+
+        <button type="submit">Valider</button>
+	</div>
+	</form>
+    </div>
+  </div>
+</div>
 </body>
 </html>
