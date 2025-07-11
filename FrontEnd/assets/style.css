@@ -401,6 +401,27 @@ body.with-banner {
 	margin-top: 50px;
 }
 
+/*BOUTON SUPPRESSION D'IMAGE*/
+.modal-thumbnail {
+  position: relative;
+}
+
+.delete-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 0.9rem;
+}
+
+.delete-btn i {
+  pointer-events: none;
+}
+
 /*AJOUT PHOTO*/
 #back-to-gallery{
 	font-size: 18px;

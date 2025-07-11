@@ -117,6 +117,8 @@
       <button id="to-add-photo-view">Ajouter une photo</button>
     </div>
 
+    <!-- BOUTON SUPPRESSION D'IMAGE -->
+
     <!-- AJOUT PHOTO -->
     <div id="modal-view-add-photo" class="hidden">
 	<button type="button" id="back-to-gallery"><i class="fa-solid fa-arrow-left"></i></button>
@@ -130,17 +132,17 @@
 		</div>
 
         <label for="file-photo" id="photo-file">+ Ajouter une photo</label>
-        <input type="file" id="file-photo" name="file-photo" accept="image/*" required>
+		<input type="file" id="file-photo" name="image" accept="image/*" required>
 
 		<p class="upload-info">jpg, png : 4mo max</p>
 	</div>
 
 	<div class="info-upload">        
 		<label for="photo-title">Titre</label>
-        <input type="text" id="photo-title" name="photo-title" required>
+        <input type="text" id="photo-title" name="title" required>
 
 		<label for="photo-category">Catégorie</label>
-		<select id="photo-category" name="photo-category" required>
+		<select id="photo-category" name="category" required>
 		<option value=""></option>
 		</select>
 
