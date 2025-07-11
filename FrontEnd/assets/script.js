@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
       loginLink.addEventListener("click", e => {
         e.preventDefault();
         localStorage.removeItem("token");
-        window.location.href = "login.html";
+        window.location.href = "index.html";
       });
     }
   } else {
