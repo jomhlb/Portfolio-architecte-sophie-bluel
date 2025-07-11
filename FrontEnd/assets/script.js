@@ -16,6 +16,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const toAddPhotoViewBtn = document.getElementById("to-add-photo-view");
   const backToGalleryBtn = document.getElementById("back-to-gallery");
 
+  // RÉCUPÉRATION DES CATÉGORIES POUR LE FORMULAIRE D'AJOUT
+fetch("http://localhost:5678/api/categories")
+  .then(response => response.json())
+  .then(categories => {
+    const categorySelect = document.getElementById("photo-category");
+    categories.forEach(category => {
+      const option = document.createElement("option");
+      option.value = category.id;
+      option.textContent = category.name;
+      categorySelect.appendChild(option);
+    });
+  })
+  .catch(error => {
+    console.error("Erreur lors de la récupération des catégories :", error);
+  });
+  
   // OUVERTURE DE LA MODALE
   openModalBtn.addEventListener("click", () => {
     modal.classList.remove("hidden");
