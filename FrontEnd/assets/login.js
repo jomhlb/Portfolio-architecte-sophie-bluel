@@ -1,4 +1,4 @@
-/** FORMULAIRE */
+// FORMULAIRE
   const form = document.getElementById("login-form");
   const error = document.getElementById("error-message");
 
