@@ -245,6 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
         previewImage.style.display = "block";
 
         label.style.display = "none";
+        fileInput.style.display = "none";
         info.style.display = "none";
         uploadZone.style.display = "none";
       };
@@ -305,6 +306,8 @@ document.addEventListener("DOMContentLoaded", () => {
         img.alt = newWork.title;
         img.setAttribute("data-id", newWork.id);
 
+        img.classList.add("gallery-img");
+
         const caption = document.createElement("figcaption");
         caption.textContent = newWork.title;
 
@@ -312,7 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
         figure.appendChild(caption);
         gallery.appendChild(figure);
 
-        // ✅ Ajouter la nouvelle image à la galerie de la modale
+          // ✅ Ajouter la nouvelle image à la galerie de la modale
         const modalGallery = document.querySelector(".modal-gallery");
 
         const modalFigure = document.createElement("figure");
