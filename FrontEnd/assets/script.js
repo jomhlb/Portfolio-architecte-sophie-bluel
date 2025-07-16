@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const loginLink = document.querySelector('nav ul li a.login-link');
 
   const modal = document.getElementById("modal");
-  const openModalBtn = document.getElementById("open-modal-btn");
   const closeModalBtn = document.querySelector(".modal-close");
 
   const modalViewGallery = document.getElementById("modal-view-gallery");
@@ -24,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const label = document.getElementById("photo-file");
   const info = document.querySelector(".upload-info");
   const uploadZone = document.querySelector(".upload-zone");
-  const closeBtn = document.getElementById("close-modal-btn");
 
    // FONCTION POUR AFFICHER LES PROJETS PAR CATÉGORIE 
   function afficherProjets(data, categorie) {
@@ -149,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ÉVÉNEMENTS DE LA MODALE
   // Ouvrir modale
-  openModalBtn.addEventListener("click", () => {
+  modifierBtn.addEventListener("click", () => {
     modal.classList.remove("hidden");
     modal.setAttribute("aria-hidden", "false");
     modalViewGallery.classList.remove("hidden");
@@ -247,7 +245,6 @@ document.addEventListener("DOMContentLoaded", () => {
         previewImage.style.display = "block";
 
         label.style.display = "none";
-        fileInput.style.display = "none";
         info.style.display = "none";
         uploadZone.style.display = "none";
       };
@@ -256,14 +253,6 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       resetImagePreview();
     }
-  });
-
-  // Fermer l'ajout de photo (bouton annuler)
-  closeBtn.addEventListener("click", () => {
-    resetImagePreview();
-    form.reset();
-    modalViewAddPhoto.classList.add("hidden");
-    modalViewGallery.classList.remove("hidden");
   });
 
   // Soumission du formulaire d'ajout de photo
@@ -322,6 +311,52 @@ document.addEventListener("DOMContentLoaded", () => {
         figure.appendChild(img);
         figure.appendChild(caption);
         gallery.appendChild(figure);
+
+        // ✅ Ajouter la nouvelle image à la galerie de la modale
+        const modalGallery = document.querySelector(".modal-gallery");
+
+        const modalFigure = document.createElement("figure");
+        modalFigure.classList.add("modal-thumbnail");
+        modalFigure.dataset.id = newWork.id;
+
+        const modalImg = document.createElement("img");
+        modalImg.src = newWork.imageUrl;
+        modalImg.alt = newWork.title;
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.classList.add("delete-btn");
+        deleteBtn.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
+        deleteBtn.setAttribute("aria-label", "Supprimer le projet");
+
+        deleteBtn.addEventListener("click", async (e) => {
+          e.stopPropagation();
+          const confirmed = confirm("Voulez-vous vraiment supprimer ce projet ?");
+          if (!confirmed) return;
+
+          try {
+            const response = await fetch(`http://localhost:5678/api/works/${newWork.id}`, {
+              method: "DELETE",
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            });
+
+            if (response.ok) {
+              modalFigure.remove();
+              const imageToRemove = document.querySelector(`.gallery img[data-id="${newWork.id}"]`);
+              if (imageToRemove) imageToRemove.closest("figure").remove();
+            } else {
+              alert("Erreur lors de la suppression du projet.");
+            }
+          } catch (error) {
+            console.error("Erreur réseau lors de la suppression :", error);
+            alert("Une erreur est survenue.");
+          }
+        });
+
+        modalFigure.appendChild(modalImg);
+        modalFigure.appendChild(deleteBtn);
+        modalGallery.appendChild(modalFigure);
 
         // Retour à la vue galerie dans la modale
         modalViewAddPhoto.classList.add("hidden");
