@@ -34,11 +34,4 @@
     }
   });
 
-const token = localStorage.getItem("token");
-const adminBanner = document.getElementById("admin-banner");
-
-if (token) {
-  adminBanner.classList.remove("hidden");
-}
-
 

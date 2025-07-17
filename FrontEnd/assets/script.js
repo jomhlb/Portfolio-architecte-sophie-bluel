@@ -239,18 +239,6 @@ document.addEventListener("DOMContentLoaded", () => {
   uploadZone.style.display = "none";
 }
 
-  fileInput.addEventListener("change", () => {
-    const file = fileInput.files[0];
-
-    if (file && file.type.startsWith("image/")) {
-      const reader = new FileReader();
-
-      reader.readAsDataURL(file);
-    } else {
-      resetImagePreview();
-    }
-  });
-
   // RESET Aperçu image + input fichier dans le formulaire ajout photo
   function resetImagePreview() {
     previewImage.src = "";
