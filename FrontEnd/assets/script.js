@@ -24,7 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const info = document.querySelector(".upload-info");
   const uploadZone = document.querySelector(".upload-zone");
 
-   // FONCTION POUR AFFICHER LES PROJETS PAR CATÉGORIE 
+
+// Filtrage & affichage des projets
+  // FONCTION POUR AFFICHER LES PROJETS PAR CATÉGORIE 
   function afficherProjets(data, categorie) {
     gallery.innerHTML = "";
     data.forEach(item => {
@@ -43,19 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
         gallery.appendChild(figure);
       }
     });
-  }
-
-  // RESET Aperçu image + input fichier dans le formulaire ajout photo
-  function resetImagePreview() {
-    previewImage.src = "";
-    previewImage.style.display = "none";
-
-    label.style.display = "inline-block";
-    fileInput.style.display = "none";
-    info.style.display = "block";
-    uploadZone.style.display = "block";
-
-    fileInput.value = "";
   }
 
   // RÉCUPÉRATION DES CATÉGORIES POUR FORMULAIRE
@@ -105,6 +94,9 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Erreur lors de la récupération des travaux :", error);
     });
 
+// -----------------------------------------------------------------------------------------------------------------------------
+
+// Mise en place du système de connexion
   // MODE ÉDITION SI CONNECTÉ
   const token = localStorage.getItem("token");
 
@@ -145,13 +137,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (adminBanner) adminBanner.style.display = "none";
   }
 
+// -----------------------------------------------------------------------------------------------------------------------------
+
+// Fonctionnement de l’ajout de travaux à la galerie
   // ÉVÉNEMENTS DE LA MODALE
-  // Ouvrir modale
-  modifierBtn.addEventListener("click", () => {
-    modal.classList.remove("hidden");
-    modal.setAttribute("aria-hidden", "false");
-    modalViewGallery.classList.remove("hidden");
-    modalViewAddPhoto.classList.add("hidden");
+    // Ouvrir modale
+    modifierBtn.addEventListener("click", () => {
+      modal.classList.remove("hidden");
+      modal.setAttribute("aria-hidden", "false");
+      modalViewGallery.classList.remove("hidden");
+      modalViewAddPhoto.classList.add("hidden");
 
     // Nettoyer galerie modale
     const modalGallery = document.querySelector(".modal-gallery");
@@ -234,27 +229,56 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Aperçu image dans formulaire ajout photo
+  function afficherImagePreview(src) {
+  previewImage.src = src;
+  previewImage.style.display = "block";
+
+  label.style.display = "none";
+  fileInput.style.display = "none";
+  info.style.display = "none";
+  uploadZone.style.display = "none";
+}
+
   fileInput.addEventListener("change", () => {
     const file = fileInput.files[0];
 
     if (file && file.type.startsWith("image/")) {
       const reader = new FileReader();
 
-      reader.onload = (e) => {
-        previewImage.src = e.target.result;
-        previewImage.style.display = "block";
-
-        label.style.display = "none";
-        fileInput.style.display = "none";
-        info.style.display = "none";
-        uploadZone.style.display = "none";
-      };
-
       reader.readAsDataURL(file);
     } else {
       resetImagePreview();
     }
   });
+
+  // RESET Aperçu image + input fichier dans le formulaire ajout photo
+  function resetImagePreview() {
+    previewImage.src = "";
+    previewImage.style.display = "none";
+
+    label.style.display = "inline-block";
+    fileInput.style.display = "none";
+    info.style.display = "block";
+    uploadZone.style.display = "block";
+
+    fileInput.value = "";
+  }
+
+  fileInput.addEventListener("change", () => {
+  const file = fileInput.files[0];
+
+  if (file && file.type.startsWith("image/")) {
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      afficherImagePreview(e.target.result);
+    };
+
+    reader.readAsDataURL(file);
+  } else {
+    resetImagePreview();
+  }
+});
 
   // Soumission du formulaire d'ajout de photo
   form.addEventListener("submit", (event) => {
@@ -314,8 +338,8 @@ document.addEventListener("DOMContentLoaded", () => {
         figure.appendChild(img);
         figure.appendChild(caption);
         gallery.appendChild(figure);
-
-          // ✅ Ajouter la nouvelle image à la galerie de la modale
+        
+        // Ajouter la nouvelle image à la galerie de la modale
         const modalGallery = document.querySelector(".modal-gallery");
 
         const modalFigure = document.createElement("figure");
