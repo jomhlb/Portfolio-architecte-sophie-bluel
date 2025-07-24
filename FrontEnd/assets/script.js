@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const info = document.querySelector(".upload-info");
   const uploadZone = document.querySelector(".upload-zone");
 
-// Filtrage & affichage des projets
+  // Filtrage & affichage des projets
   // FONCTION POUR AFFICHER LES PROJETS PAR CATÉGORIE 
   function afficherProjets(data, categorie) {
     gallery.innerHTML = "";
@@ -93,9 +93,9 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Erreur lors de la récupération des travaux :", error);
     });
 
-// -----------------------------------------------------------------------------------------------------------------------------
+  // -----------------------------------------------------------------------------------------------------------------------------
 
-// Mise en place du système de connexion
+  // Mise en place du système de connexion
   // MODE ÉDITION SI CONNECTÉ
   const token = localStorage.getItem("token");
 
@@ -136,16 +136,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (adminBanner) adminBanner.style.display = "none";
   }
 
-// -----------------------------------------------------------------------------------------------------------------------------
+  // -----------------------------------------------------------------------------------------------------------------------------
 
-// Fonctionnement de l’ajout de travaux à la galerie
+  // Fonctionnement de l’ajout de travaux à la galerie
   // ÉVÉNEMENTS DE LA MODALE
-    // Ouvrir modale
-    modifierBtn.addEventListener("click", () => {
-      modal.classList.remove("hidden");
-      modal.setAttribute("aria-hidden", "false");
-      modalViewGallery.classList.remove("hidden");
-      modalViewAddPhoto.classList.add("hidden");
+  // Ouvrir modale
+  modifierBtn.addEventListener("click", () => {
+    modal.classList.remove("hidden");
+    modal.setAttribute("aria-hidden", "false");
+    modalViewGallery.classList.remove("hidden");
+    modalViewAddPhoto.classList.add("hidden");
 
     // Nettoyer galerie modale
     const modalGallery = document.querySelector(".modal-gallery");
@@ -229,14 +229,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Aperçu image dans formulaire ajout photo
   function afficherImagePreview(src) {
-  previewImage.src = src;
-  previewImage.style.display = "block";
+    previewImage.src = src;
+    previewImage.style.display = "block";
 
-  label.style.display = "none";
-  fileInput.style.display = "none";
-  info.style.display = "none";
-  uploadZone.style.display = "none";
-}
+    label.style.display = "none";
+    fileInput.style.display = "none";
+    info.style.display = "none";
+    uploadZone.style.display = "none";
+  }
 
   // RESET Aperçu image + input fichier dans le formulaire ajout photo
   function resetImagePreview() {
@@ -252,20 +252,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   fileInput.addEventListener("change", () => {
-  const file = fileInput.files[0];
+    const file = fileInput.files[0];
 
-  if (file && file.type.startsWith("image/")) {
-    const reader = new FileReader();
+    if (file && file.type.startsWith("image/")) {
+      const reader = new FileReader();
 
-    reader.onload = (e) => {
-      afficherImagePreview(e.target.result);
-    };
+      reader.onload = (e) => {
+        afficherImagePreview(e.target.result);
+      };
 
-    reader.readAsDataURL(file);
-  } else {
-    resetImagePreview();
-  }
-});
+      reader.readAsDataURL(file);
+    } else {
+      resetImagePreview();
+    }
+  });
 
   // Soumission du formulaire d'ajout de photo
   form.addEventListener("submit", (event) => {
@@ -325,7 +325,7 @@ document.addEventListener("DOMContentLoaded", () => {
         figure.appendChild(img);
         figure.appendChild(caption);
         gallery.appendChild(figure);
-        
+
         // Ajouter la nouvelle image à la galerie de la modale
         const modalGallery = document.querySelector(".modal-gallery");
 
