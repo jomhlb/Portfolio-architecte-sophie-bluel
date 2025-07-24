@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const filtresContainer = document.querySelector(".filtres-galery");
   const adminBanner = document.getElementById("admin-banner");
   const modifierBtn = document.getElementById("open-modal-btn");
-  const loginLink = document.querySelector('nav ul li a.login-link');
+  const loginLink = document.getElementById("login-link");
 
   const modal = document.getElementById("modal");
   const closeModalBtn = document.querySelector(".modal-close");
@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (loginLink) {
       loginLink.textContent = "logout";
       loginLink.href = "#";
-      loginLink.classList.remove("login-link");
+      loginLink.classList.remove("menu-link");
       loginLink.classList.add("logout-style");
       loginLink.addEventListener("click", e => {
         e.preventDefault();
@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (loginLink) {
       loginLink.textContent = "login";
       loginLink.href = "login.html";
-      loginLink.classList.add("login-link");
+      loginLink.classList.add("menu-link");
     }
 
     if (adminBanner) adminBanner.style.display = "none";

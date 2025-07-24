@@ -199,7 +199,7 @@ li:hover {
 	color: #B1663C;
 }
 
-.login-link:hover {
+.menu-link:hover {
 	color: #B1663C;
 }
 
@@ -339,7 +339,7 @@ body.with-banner {
 }
 
 /*LOGIN - LOGOUT*/
-.login-link {
+.menu-link {
 	text-decoration: none;
 	color: black;
 }
