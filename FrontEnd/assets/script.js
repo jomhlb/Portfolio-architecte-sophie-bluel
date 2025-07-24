@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const info = document.querySelector(".upload-info");
   const uploadZone = document.querySelector(".upload-zone");
 
-
 // Filtrage & affichage des projets
   // FONCTION POUR AFFICHER LES PROJETS PAR CATÉGORIE 
   function afficherProjets(data, categorie) {
